@@ -124,6 +124,8 @@ private void Fillcombo()
         jLabel4 = new javax.swing.JLabel();
         saveTotal = new java.awt.Button();
         goBack = new java.awt.Button();
+        jLabel6 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -261,85 +263,88 @@ private void Fillcombo()
             }
         });
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Date");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmd_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(goBack, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmd_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ComboBox_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(incomeSource, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(saveTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(getTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17))))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmd_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))
+                    .addComponent(goBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmd_Save, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboBox_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(incomeSource, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(ComboBox_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(incomeSource, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmd_delete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmd_Save, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(getTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(saveTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(goBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(ComboBox_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(incomeSource, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmd_delete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmd_Save, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(getTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(goBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -355,6 +360,188 @@ private void Fillcombo()
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void goBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackActionPerformed
+        close();
+        new addIncomesPages().setVisible(true); // TODO add your handling code here:
+    }//GEN-LAST:event_goBackActionPerformed
+
+    private void saveTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveTotalActionPerformed
+        try
+        {
+            String sql ="Insert into totalExpense (expense) values (?)";//Query to insert data
+            pst=conn.prepareStatement(sql);
+
+            pst.setString(1, totalAmount.getText());
+            // pst.setString(2, incomeSource.getText());//tfID is IncomeSource variable name
+            //pst.setString(3, amount.getText());//tfIncome is Amount variable name
+
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Total Expense Is Saved");
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally
+        {
+            try
+            {
+                rs.close();
+                pst.close();
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
+        // Update_table();
+    }//GEN-LAST:event_saveTotalActionPerformed
+
+    private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
+        // TODO add your handling code here:
+        close();
+        new createDisplayPage().setVisible(true);
+    }//GEN-LAST:event_OkActionPerformed
+
+    private void getTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getTotalActionPerformed
+
+        try
+        {
+            String sql="Select sum(amount) from expenses";
+            pst=conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+
+            if(rs.next())
+            {
+                String sum=rs.getString("sum(amount)");
+                totalAmount.setText(sum);
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        finally
+        {
+            try
+            {
+                rs.close();
+                pst.close();
+            }
+            catch (Exception e)
+            {
+            }
+        }
+        Update_table();
+    }//GEN-LAST:event_getTotalActionPerformed
+
+    private void totalAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAmountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalAmountActionPerformed
+
+    private void cmd_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmd_SaveActionPerformed
+        try
+        {
+            String sql ="Insert into expenses (id,expenseType,amount) values (?,?,?)";//Query to insert data
+            pst=conn.prepareStatement(sql);
+
+            pst.setString(1, id.getText());
+            pst.setString(2, incomeSource.getText());//tfID is IncomeSource variable name
+            pst.setString(3, amount.getText());//tfIncome is Amount variable name
+
+            pst.execute();
+            //JOptionPane.showMessageDialog(null, "Saved");
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally
+        {
+            try
+            {
+                rs.close();
+                pst.close();
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
+        Update_table();
+    }//GEN-LAST:event_cmd_SaveActionPerformed
+
+    private void cmd_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmd_deleteActionPerformed
+        String sql="delete from expenses where id =?";
+        try
+        {
+            pst=conn.prepareStatement(sql);
+            pst.setString(1,id.getText());
+            pst.execute();
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        finally
+        {
+            try
+            {
+                rs.close();
+                pst.close();
+            }
+            catch (Exception e)
+            {
+            }
+        }
+        Update_table();
+    }//GEN-LAST:event_cmd_deleteActionPerformed
+
+    private void amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_amountActionPerformed
+
+    private void incomeSourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomeSourceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_incomeSourceActionPerformed
+
+    private void ComboBox_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBox_nameActionPerformed
+
+    private void ComboBox_namePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_ComboBox_namePopupMenuWillBecomeInvisible
+        String tmp = (String)ComboBox_name.getSelectedItem();
+        String sql= "select * from expenseList where Expense=?";
+        try
+        {
+            pst=conn.prepareStatement(sql);
+            pst.setString(1, tmp);
+            rs=pst.executeQuery();
+            if(rs.next())
+            {
+                String add1 =rs.getString("Expense");
+                incomeSource.setText(add1);
+            }
+        }catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null,e);
+        }
+        finally
+        {
+            try
+            {
+                rs.close();
+                pst.close();
+            }
+            catch (Exception e)
+            {
+            }
+        }
+    }//GEN-LAST:event_ComboBox_namePopupMenuWillBecomeInvisible
+
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idActionPerformed
 
     private void tblCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCustomerMouseClicked
 
@@ -391,188 +578,6 @@ private void Fillcombo()
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_tblCustomerMouseClicked
-
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
-
-    private void ComboBox_namePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_ComboBox_namePopupMenuWillBecomeInvisible
-        String tmp = (String)ComboBox_name.getSelectedItem();
-        String sql= "select * from expenseList where Expense=?";
-        try
-        {
-            pst=conn.prepareStatement(sql);
-            pst.setString(1, tmp);
-            rs=pst.executeQuery();
-            if(rs.next())
-            {
-                String add1 =rs.getString("Expense");
-                incomeSource.setText(add1);
-            }
-        }catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,e);
-        }
-        finally
-        {
-            try
-            {
-                rs.close();
-                pst.close();
-            }
-            catch (Exception e)
-            {
-            }
-        }
-    }//GEN-LAST:event_ComboBox_namePopupMenuWillBecomeInvisible
-
-    private void ComboBox_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComboBox_nameActionPerformed
-
-    private void incomeSourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incomeSourceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_incomeSourceActionPerformed
-
-    private void amountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountActionPerformed
-
-    private void cmd_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmd_deleteActionPerformed
-        String sql="delete from expenses where id =?";
-        try
-        {
-            pst=conn.prepareStatement(sql);
-            pst.setString(1,id.getText());
-            pst.execute();
-
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        finally
-        {
-            try
-            {
-                rs.close();
-                pst.close();
-            }
-            catch (Exception e)
-            {
-            }
-        }
-        Update_table();
-    }//GEN-LAST:event_cmd_deleteActionPerformed
-
-    private void cmd_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmd_SaveActionPerformed
-        try
-        {
-            String sql ="Insert into expenses (id,expenseType,amount) values (?,?,?)";//Query to insert data
-            pst=conn.prepareStatement(sql);
-
-            pst.setString(1, id.getText());
-            pst.setString(2, incomeSource.getText());//tfID is IncomeSource variable name
-            pst.setString(3, amount.getText());//tfIncome is Amount variable name
-
-            pst.execute();
-            //JOptionPane.showMessageDialog(null, "Saved");
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,e);
-        }
-        finally
-        {
-            try
-            {
-                rs.close();
-                pst.close();
-            }
-            catch (Exception e)
-            {
-            }
-        }
-
-        Update_table();
-    }//GEN-LAST:event_cmd_SaveActionPerformed
-
-    private void totalAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAmountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_totalAmountActionPerformed
-
-    private void getTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getTotalActionPerformed
-
-        try
-        {
-            String sql="Select sum(amount) from expenses";
-            pst=conn.prepareStatement(sql);
-            rs=pst.executeQuery();
-
-            if(rs.next())
-            {
-                String sum=rs.getString("sum(amount)");
-                totalAmount.setText(sum);
-            }
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        finally
-        {
-            try
-            {
-                rs.close();
-                pst.close();
-            }
-            catch (Exception e)
-            {
-            }
-        }
-        Update_table();
-    }//GEN-LAST:event_getTotalActionPerformed
-
-    private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
-        // TODO add your handling code here:
-        close();
-        new createDisplayPage().setVisible(true);
-    }//GEN-LAST:event_OkActionPerformed
-
-    private void saveTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveTotalActionPerformed
-           try
-        {
-            String sql ="Insert into totalExpense (expense) values (?)";//Query to insert data
-            pst=conn.prepareStatement(sql);
-
-            pst.setString(1, totalAmount.getText());
-           // pst.setString(2, incomeSource.getText());//tfID is IncomeSource variable name
-            //pst.setString(3, amount.getText());//tfIncome is Amount variable name
-
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Total Expense Is Saved");
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,e);
-        }
-        finally
-        {
-            try
-            {
-                rs.close();
-                pst.close();
-            }
-            catch (Exception e)
-            {
-            }
-        }
-
-       // Update_table();
-    }//GEN-LAST:event_saveTotalActionPerformed
-
-    private void goBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackActionPerformed
-       close();
-        new addIncomesPages().setVisible(true); // TODO add your handling code here:
-    }//GEN-LAST:event_goBackActionPerformed
 
     
    
@@ -626,17 +631,19 @@ private void Fillcombo()
     private java.awt.Button goBack;
     private javax.swing.JTextField id;
     private javax.swing.JTextField incomeSource;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private java.awt.Button saveTotal;
-    public javax.swing.JTable tblCustomer;
+    private javax.swing.JTable tblCustomer;
     private javax.swing.JTextField totalAmount;
     // End of variables declaration//GEN-END:variables
 }
