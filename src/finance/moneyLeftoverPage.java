@@ -196,6 +196,12 @@ private void Update_table2()
         });
         jScrollPane2.setViewportView(totalExpenseTable);
 
+        totalIncomeVariable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalIncomeVariableActionPerformed(evt);
+            }
+        });
+
         subtractButton.setBackground(new java.awt.Color(255, 255, 51));
         subtractButton.setLabel("Subtract");
         subtractButton.addActionListener(new java.awt.event.ActionListener() {
@@ -320,6 +326,7 @@ private void Update_table2()
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
      public void close() {
@@ -339,7 +346,7 @@ private void Update_table2()
          try{
             int row = totalIncomeTable.getSelectedRow();
             String Table_click=(totalIncomeTable.getModel().getValueAt(row, 0).toString());
-            String sql = "select * from totalIncome where income = '"+Table_click+"' "; //first write the query
+            String sql = "select * from totalIncome where date = '"+Table_click+"' "; //first write the query
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
             if(rs.next()) {
@@ -366,7 +373,7 @@ private void Update_table2()
         try{
             int row = totalExpenseTable.getSelectedRow();
             String Table_click=(totalExpenseTable.getModel().getValueAt(row, 0).toString());
-            String sql = "select * from totalExpense where expense = '"+Table_click+"' "; //first write the query
+            String sql = "select * from totalExpense where date = '"+Table_click+"' "; //first write the query
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
             if(rs.next()) {
@@ -450,6 +457,10 @@ private void Update_table2()
         frame.setSize(450,500);
         */
     }//GEN-LAST:event_expensePieChartButtonActionPerformed
+
+    private void totalIncomeVariableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalIncomeVariableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_totalIncomeVariableActionPerformed
 
     /**
      * @param args the command line arguments
