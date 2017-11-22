@@ -42,12 +42,13 @@ PreparedStatement pst = null;
         Update_table();
         Update_table2();
     }
+    //gets the data from net2 sqlite table
 private void Update_table()
     {
     
         try
         {
-            String sql = "select * from totalIncome";//open the query connection to the database
+            String sql = "select * from net2";//open the query connection to the database
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
             totalIncomeTable.setModel(DbUtils.resultSetToTableModel(rs));
@@ -76,7 +77,7 @@ private void Update_table2()
     
         try
         {
-            String sql = "select * from totalExpense";//open the query connection to the database
+            String sql = "select * from spend2";//open the query connection to the database
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
             totalExpenseTable.setModel(DbUtils.resultSetToTableModel(rs));
@@ -114,19 +115,21 @@ private void Update_table2()
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         button1 = new java.awt.Button();
-        button2 = new java.awt.Button();
         jScrollPane1 = new javax.swing.JScrollPane();
         totalIncomeTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         totalExpenseTable = new javax.swing.JTable();
         totalIncomeVariable = new javax.swing.JTextField();
-        totalExpenseVariable = new javax.swing.JTextField();
+        start = new javax.swing.JTextField();
         subtractButton = new java.awt.Button();
         moneyLeftover = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         expensePieChartButton = new java.awt.Button();
+        button3 = new java.awt.Button();
+        Delete = new java.awt.Button();
+        DeleteExpenseRow = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -145,30 +148,22 @@ private void Update_table2()
         jLabel3.setText("Income Usage Statistics");
 
         button1.setBackground(new java.awt.Color(0, 204, 0));
-        button1.setLabel("Quit");
+        button1.setLabel("Home");
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button1ActionPerformed(evt);
             }
         });
 
-        button2.setBackground(new java.awt.Color(0, 204, 0));
-        button2.setLabel("createDispayPage");
-        button2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button2ActionPerformed(evt);
-            }
-        });
-
         totalIncomeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Total Income"
+                "from", "to", "total income"
             }
         ));
         totalIncomeTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -180,13 +175,13 @@ private void Update_table2()
 
         totalExpenseTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Total Expense"
+                "from", "to", "total expense"
             }
         ));
         totalExpenseTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -202,8 +197,14 @@ private void Update_table2()
             }
         });
 
+        start.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startActionPerformed(evt);
+            }
+        });
+
         subtractButton.setBackground(new java.awt.Color(255, 255, 51));
-        subtractButton.setLabel("Subtract");
+        subtractButton.setLabel("Calculate");
         subtractButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subtractButtonActionPerformed(evt);
@@ -227,13 +228,36 @@ private void Update_table2()
             }
         });
 
+        button3.setBackground(new java.awt.Color(255, 255, 51));
+        button3.setLabel("Edit Budget");
+        button3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button3ActionPerformed(evt);
+            }
+        });
+
+        Delete.setBackground(new java.awt.Color(255, 0, 0));
+        Delete.setLabel("Delete Income Row ");
+        Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteActionPerformed(evt);
+            }
+        });
+
+        DeleteExpenseRow.setBackground(new java.awt.Color(255, 0, 0));
+        DeleteExpenseRow.setLabel("Delete Expense Row ");
+        DeleteExpenseRow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteExpenseRowActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(328, 328, 328)
@@ -256,22 +280,24 @@ private void Update_table2()
                                     .addContainerGap()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(expensePieChartButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4))
-                                    .addGap(0, 0, 0)))
+                                        .addComponent(jLabel4))))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(totalIncomeVariable)
-                                    .addComponent(totalExpenseVariable)
+                                    .addComponent(start)
                                     .addComponent(subtractButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(moneyLeftover)
-                                    .addComponent(jLabel5))))))
-                .addContainerGap(219, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(72, 72, 72)
-                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(611, Short.MAX_VALUE)))
+                                    .addComponent(jLabel5)))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteExpenseRow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,20 +310,26 @@ private void Update_table2()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(totalIncomeVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel6))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(Delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(totalIncomeVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(25, 25, 25)
+                            .addComponent(jLabel6))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(totalExpenseVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DeleteExpenseRow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
-                        .addComponent(subtractButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(subtractButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(moneyLeftover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -307,11 +339,6 @@ private void Update_table2()
                 .addGap(62, 62, 62)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(512, Short.MAX_VALUE)
-                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(12, 12, 12)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -333,24 +360,21 @@ private void Update_table2()
     WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
     Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
     }
-    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
-        close();
-        new createDisplayPage().setVisible(true);   // TODO add your handling code here:
-    }//GEN-LAST:event_button2ActionPerformed
-
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        close();        // TODO add your handling code here:
+        close ();
+        new createDisplayPage().setVisible(true); // navigate to Home page
+        
     }//GEN-LAST:event_button1ActionPerformed
 
     private void totalIncomeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_totalIncomeTableMouseClicked
          try{
             int row = totalIncomeTable.getSelectedRow();
             String Table_click=(totalIncomeTable.getModel().getValueAt(row, 0).toString());
-            String sql = "select * from totalIncome where date = '"+Table_click+"' "; //first write the query
+            String sql = "select * from net2 where start = '"+Table_click+"' "; //first write the query
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
             if(rs.next()) {
-                String add1 =rs.getString("income");        
+                String add1 =rs.getString("totalIncome");        
                 totalIncomeVariable.setText(add1);               
             }
         }catch(Exception e){
@@ -373,12 +397,12 @@ private void Update_table2()
         try{
             int row = totalExpenseTable.getSelectedRow();
             String Table_click=(totalExpenseTable.getModel().getValueAt(row, 0).toString());
-            String sql = "select * from totalExpense where date = '"+Table_click+"' "; //first write the query
+            String sql = "select * from spend2 where start = '"+Table_click+"' "; //first write the query
             pst=conn.prepareStatement(sql);
             rs=pst.executeQuery();
             if(rs.next()) {
-                String add1 =rs.getString("expense");        
-                totalExpenseVariable.setText(add1);               
+                String add1 =rs.getString("totalExpense");        
+                start.setText(add1);               
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
@@ -399,13 +423,12 @@ private void Update_table2()
     private void subtractButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subtractButtonActionPerformed
          int num1,num2,sub;
         num1=Integer.parseInt(totalIncomeVariable.getText());
-        num2=Integer.parseInt(totalExpenseVariable.getText());
+        num2=Integer.parseInt(start.getText());
         sub=num1-num2;
         moneyLeftover.setText(" "+sub);
     }//GEN-LAST:event_subtractButtonActionPerformed
 
     private void expensePieChartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expensePieChartButtonActionPerformed
-
        try
        {
             DefaultPieDataset dataset = new DefaultPieDataset( );
@@ -462,6 +485,72 @@ private void Update_table2()
         // TODO add your handling code here:
     }//GEN-LAST:event_totalIncomeVariableActionPerformed
 
+    private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startActionPerformed
+
+    private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
+        // TODO add your handling code here:
+ close();
+        new addIncomesPages().setVisible(true);
+
+    }//GEN-LAST:event_button3ActionPerformed
+
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+        String sql="delete from net2 where totalIncome =?";//tried it with rowid, start and it didn't delete. I even changed the 
+        //variable name from totalIncomeVariable to start (when i chose start). Didn't work. It seems like it 
+            //doesn't like deleting the dates. 
+        try
+        {
+           pst=conn.prepareStatement(sql);
+           pst.setString(1,totalIncomeVariable.getText());
+           pst.execute();
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        finally
+        {
+            try
+            {
+                rs.close();
+                pst.close();
+            }
+            catch (Exception e)
+            {
+            }
+        }
+        Update_table(); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DeleteActionPerformed
+
+    private void DeleteExpenseRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteExpenseRowActionPerformed
+           String sql="delete from spend2 where totalExpense =?";//tried it with rowid, start and it didn't delete. I even changed the 
+        //variable name from totalIncomeVariable to start (when i chose start). Didn't work. It seems like it 
+            //doesn't like deleting the dates. 
+        try
+        {
+           pst=conn.prepareStatement(sql);
+           pst.setString(1,start.getText());
+           pst.execute();
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        finally
+        {
+            try
+            {
+                rs.close();
+                pst.close();
+            }
+            catch (Exception e)
+            {
+            }
+        }
+        Update_table2();
+    }//GEN-LAST:event_DeleteExpenseRowActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -499,8 +588,10 @@ private void Update_table2()
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button Delete;
+    private java.awt.Button DeleteExpenseRow;
     private java.awt.Button button1;
-    private java.awt.Button button2;
+    private java.awt.Button button3;
     private java.awt.Button expensePieChartButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -512,9 +603,9 @@ private void Update_table2()
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField moneyLeftover;
+    private javax.swing.JTextField start;
     private java.awt.Button subtractButton;
     private javax.swing.JTable totalExpenseTable;
-    private javax.swing.JTextField totalExpenseVariable;
     private javax.swing.JTable totalIncomeTable;
     private javax.swing.JTextField totalIncomeVariable;
     // End of variables declaration//GEN-END:variables
