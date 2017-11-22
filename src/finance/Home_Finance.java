@@ -57,7 +57,8 @@ public class Home_Finance extends javax.swing.JFrame {
 
         button1.setActionCommand("btn_complete");
         button1.setBackground(new java.awt.Color(0, 204, 0));
-        button1.setLabel("Start");
+        button1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        button1.setLabel("Create Budget");
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button1ActionPerformed(evt);
@@ -104,6 +105,7 @@ public class Home_Finance extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public void close() {
@@ -115,7 +117,7 @@ public class Home_Finance extends javax.swing.JFrame {
         // TODO add your handling code here:
        
         close();
-        new createDisplayPage().setVisible(true);
+        new StrtEnd().setVisible(true);
       
     }//GEN-LAST:event_button1ActionPerformed
 
