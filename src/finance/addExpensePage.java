@@ -36,31 +36,31 @@ PreparedStatement pst = null;
 private void Update_table()
 {
     
+    try
+    {
+        String sql = "select * from expenses";//open the query connection to the database
+        pst=conn.prepareStatement(sql);
+        rs=pst.executeQuery();
+        tblCustomer.setModel(DbUtils.resultSetToTableModel(rs));
+    }
+    catch(Exception e)
+    {
+        JOptionPane.showMessageDialog(null, e);
+    }   
+    //After the catch block you have to write this. 
+    //When you write this after executing the query we are closing the connection. 
+    //We're making it ready for the next connection.    
+    finally
+    {
         try
         {
-            String sql = "select * from expenses";//open the query connection to the database
-            pst=conn.prepareStatement(sql);
-            rs=pst.executeQuery();
-            tblCustomer.setModel(DbUtils.resultSetToTableModel(rs));
+            rs.close();
+            pst.close();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
-            JOptionPane.showMessageDialog(null, e);
-        }   
-        //After the catch block you have to write this. 
-        //When you write this after executing the query we are closing the connection. 
-        //We're making it ready for the next connection.    
-        finally
-        {
-            try
-            {
-                rs.close();
-                pst.close();
-            }
-            catch (Exception e)
-            {
-            }
         }
+    }
 } 
 
 private void Fillcombo()
@@ -116,16 +116,14 @@ private void Fillcombo()
         cmd_delete = new java.awt.Button();
         cmd_Save = new java.awt.Button();
         jLabel5 = new javax.swing.JLabel();
-        totalAmount = new javax.swing.JTextField();
+        totalAmountExpense = new javax.swing.JTextField();
         getTotal = new java.awt.Button();
         Ok = new java.awt.Button();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        saveTotal = new java.awt.Button();
+        saveTotalExpense = new java.awt.Button();
         goBack = new java.awt.Button();
-        jLabel6 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -216,9 +214,9 @@ private void Fillcombo()
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Total Amount $");
 
-        totalAmount.addActionListener(new java.awt.event.ActionListener() {
+        totalAmountExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalAmountActionPerformed(evt);
+                totalAmountExpenseActionPerformed(evt);
             }
         });
 
@@ -231,7 +229,7 @@ private void Fillcombo()
         });
 
         Ok.setBackground(new java.awt.Color(0, 204, 0));
-        Ok.setLabel("Go To Create Display Page");
+        Ok.setLabel("Done");
         Ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OkActionPerformed(evt);
@@ -247,11 +245,11 @@ private void Fillcombo()
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Entry #");
 
-        saveTotal.setBackground(new java.awt.Color(102, 255, 255));
-        saveTotal.setLabel("Save Total Expense Amount");
-        saveTotal.addActionListener(new java.awt.event.ActionListener() {
+        saveTotalExpense.setBackground(new java.awt.Color(102, 255, 255));
+        saveTotalExpense.setLabel("Save Total");
+        saveTotalExpense.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveTotalActionPerformed(evt);
+                saveTotalExpenseActionPerformed(evt);
             }
         });
 
@@ -263,9 +261,6 @@ private void Fillcombo()
             }
         });
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Date");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -275,17 +270,18 @@ private void Fillcombo()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmd_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21))
-                    .addComponent(goBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(goBack, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmd_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(21, 21, 21)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,17 +289,16 @@ private void Fillcombo()
                     .addComponent(ComboBox_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(incomeSource, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(saveTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalAmountExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(getTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(8, Short.MAX_VALUE))
+                    .addComponent(saveTotalExpense, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
                         .addComponent(ComboBox_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,29 +316,26 @@ private void Fillcombo()
                             .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmd_delete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmd_Save, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(totalAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cmd_Save, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(totalAmountExpense, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5)))
+                            .addComponent(cmd_delete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(getTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Ok, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addComponent(saveTotalExpense, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                        .addComponent(goBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(goBack, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Ok, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22))
         );
 
@@ -359,6 +351,7 @@ private void Fillcombo()
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void goBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackActionPerformed
@@ -366,14 +359,20 @@ private void Fillcombo()
         new addIncomesPages().setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_goBackActionPerformed
 
-    private void saveTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveTotalActionPerformed
+    private void saveTotalExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveTotalExpenseActionPerformed
         try
         {
-            String sql ="Insert into totalExpense (expense) values (?)";//Query to insert data
+            String sql ="Insert into spend2 (start,end,totalExpense) values (?,?,?)";//Query to insert data
             pst=conn.prepareStatement(sql);
 
-            pst.setString(1, totalAmount.getText());
-            // pst.setString(2, incomeSource.getText());//tfID is IncomeSource variable name
+            String startDate = StrtEnd.instance().getStartDate();
+            String endDate = StrtEnd.instance().getEndDate();
+            
+            pst.setString(1, startDate);
+            pst.setString(2, endDate);
+            
+            pst.setString(3, totalAmountExpense.getText());
+            //pst.setString(2, ((JTextField)dateVar.getDateEditor().getUiComponent()).getText());//tfID is IncomeSource variable name
             //pst.setString(3, amount.getText());//tfIncome is Amount variable name
 
             pst.execute();
@@ -396,7 +395,7 @@ private void Fillcombo()
         }
 
         // Update_table();
-    }//GEN-LAST:event_saveTotalActionPerformed
+    }//GEN-LAST:event_saveTotalExpenseActionPerformed
 
     private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
         // TODO add your handling code here:
@@ -415,7 +414,7 @@ private void Fillcombo()
             if(rs.next())
             {
                 String sum=rs.getString("sum(amount)");
-                totalAmount.setText(sum);
+                totalAmountExpense.setText(sum);
             }
         }
         catch(Exception e)
@@ -436,9 +435,9 @@ private void Fillcombo()
         Update_table();
     }//GEN-LAST:event_getTotalActionPerformed
 
-    private void totalAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAmountActionPerformed
+    private void totalAmountExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAmountExpenseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_totalAmountActionPerformed
+    }//GEN-LAST:event_totalAmountExpenseActionPerformed
 
     private void cmd_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmd_SaveActionPerformed
         try
@@ -631,19 +630,17 @@ private void Fillcombo()
     private java.awt.Button goBack;
     private javax.swing.JTextField id;
     private javax.swing.JTextField incomeSource;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private java.awt.Button saveTotal;
-    private javax.swing.JTable tblCustomer;
-    private javax.swing.JTextField totalAmount;
+    private java.awt.Button saveTotalExpense;
+    public javax.swing.JTable tblCustomer;
+    private javax.swing.JTextField totalAmountExpense;
     // End of variables declaration//GEN-END:variables
 }
