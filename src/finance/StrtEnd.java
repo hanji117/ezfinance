@@ -4,21 +4,84 @@
  * and open the template in the editor.
  */
 package finance;
+
 import java.awt.event.*;//for closing a window when another opens
 import java.awt.*;// same as line above
+
+import javax.swing.JOptionPane;
 /**
  *
  * @author edgarcruz
  */
+import java.sql.*;
+import javax.swing.*;
 public class StrtEnd extends javax.swing.JFrame {
+Connection conn = null;
+ResultSet rs = null;
+PreparedStatement pst = null;
+
+static private StrtEnd s_instance = null;//hacking way
+
+static StrtEnd instance()
+{
+    return s_instance;
+}
+
+String getStartDate()
+{
+    return ((JTextField)dateVar.getDateEditor().getUiComponent()).getText();
+}
+
+String getEndDate()
+{
+    return ((JTextField)dateVar2.getDateEditor().getUiComponent()).getText();
+}
+
 
     /**
      * Creates new form StrtEnd
      */
+  //DefaultTableModel model;
     public StrtEnd() {
         initComponents();
+      //  model=(DefaultTableModel)tblCustomer.getModel();
+        conn=javaConnect.ConnecrDb(); 
+       // addIncomesPages addIncomesPages = new addIncomesPages(totalAmountIncome.getText());
+       // Update_table();
+       s_instance = this;//sort of like singularity
     }
-
+    /*
+ private void Update_table()
+    {
+    
+        try
+        {
+            String sql = "select * from fin";//open the query connection to the database
+            pst=conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+           //tblCustomer.setModel(DbUtils.resultSetToTableModel(rs));
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }   
+        //After the catch block you have to write this. 
+        //When you write this after executing the query we are closing the connection. 
+        //We're making it ready for the next connection.    
+        finally
+        {
+            try
+            {
+                rs.close();
+                pst.close();
+            }
+            catch (Exception e)
+            {
+            }
+        }
+    } 
+    */
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,12 +92,12 @@ public class StrtEnd extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        dateVar = new com.toedter.calendar.JDateChooser();
+        dateVar2 = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cbutton1 = new java.awt.Button();
+        createBudgetButton = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -52,12 +115,12 @@ public class StrtEnd extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("End Date:");
 
-        cbutton1.setBackground(new java.awt.Color(255, 0, 51));
-        cbutton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        cbutton1.setLabel("Create Budget\n");
-        cbutton1.addActionListener(new java.awt.event.ActionListener() {
+        createBudgetButton.setBackground(new java.awt.Color(255, 0, 51));
+        createBudgetButton.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        createBudgetButton.setLabel("Begin\n");
+        createBudgetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbutton1ActionPerformed(evt);
+                createBudgetButtonActionPerformed(evt);
             }
         });
 
@@ -72,17 +135,18 @@ public class StrtEnd extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(122, 122, 122)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(141, 141, 141)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(cbutton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(158, Short.MAX_VALUE))
+                        .addGap(275, 275, 275)
+                        .addComponent(createBudgetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(dateVar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(dateVar2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,11 +159,11 @@ public class StrtEnd extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addComponent(cbutton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                    .addComponent(dateVar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateVar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addComponent(createBudgetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,10 +189,10 @@ public class StrtEnd extends javax.swing.JFrame {
     Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
     }
   
-    private void cbutton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbutton1ActionPerformed
+    private void createBudgetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBudgetButtonActionPerformed
         close();
         new addIncomesPages().setVisible(true); // TODO add your handling code here:
-    }//GEN-LAST:event_cbutton1ActionPerformed
+    }//GEN-LAST:event_createBudgetButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,9 +230,9 @@ public class StrtEnd extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button cbutton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private java.awt.Button createBudgetButton;
+    private com.toedter.calendar.JDateChooser dateVar;
+    private com.toedter.calendar.JDateChooser dateVar2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
