@@ -370,11 +370,8 @@ private void Fillcombo()
             
             pst.setString(1, startDate);
             pst.setString(2, endDate);
-            
             pst.setString(3, totalAmountExpense.getText());
-            //pst.setString(2, ((JTextField)dateVar.getDateEditor().getUiComponent()).getText());//tfID is IncomeSource variable name
-            //pst.setString(3, amount.getText());//tfIncome is Amount variable name
-
+          
             pst.execute();
             JOptionPane.showMessageDialog(null, "Total Expense Is Saved");
         }
@@ -393,8 +390,6 @@ private void Fillcombo()
             {
             }
         }
-
-        // Update_table();
     }//GEN-LAST:event_saveTotalExpenseActionPerformed
 
     private void OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkActionPerformed
