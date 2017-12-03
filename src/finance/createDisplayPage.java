@@ -37,25 +37,25 @@ public class createDisplayPage extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         goToMoneyLeftoverPage = new java.awt.Button();
-        create = new java.awt.Button();
+        button1 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(48, 58, 115));
 
-        goToMoneyLeftoverPage.setBackground(new java.awt.Color(0, 204, 0));
-        goToMoneyLeftoverPage.setLabel("Go To Money Leftover Page");
+        goToMoneyLeftoverPage.setBackground(new java.awt.Color(255, 51, 51));
+        goToMoneyLeftoverPage.setLabel("View Budgets");
         goToMoneyLeftoverPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 goToMoneyLeftoverPageActionPerformed(evt);
             }
         });
 
-        create.setBackground(new java.awt.Color(0, 204, 0));
-        create.setLabel("Create");
-        create.addActionListener(new java.awt.event.ActionListener() {
+        button1.setBackground(new java.awt.Color(255, 51, 51));
+        button1.setLabel("Create Different Budget");
+        button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createActionPerformed(evt);
+                button1ActionPerformed(evt);
             }
         });
 
@@ -64,22 +64,20 @@ public class createDisplayPage extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(284, 284, 284)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(goToMoneyLeftoverPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(create, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)))
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addGap(258, 258, 258)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(goToMoneyLeftoverPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                .addContainerGap(292, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(create, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
-                .addComponent(goToMoneyLeftoverPage, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addGap(102, 102, 102)
+                .addComponent(goToMoneyLeftoverPage, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -94,19 +92,13 @@ public class createDisplayPage extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
       public void close() {
     WindowEvent winClosingEvent = new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
     Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
     }
-    private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
-        // TODO add your handling code here:
-        //create button
-        close();
-        new addIncomesPages().setVisible(true);
-    }//GEN-LAST:event_createActionPerformed
-
     private void goToMoneyLeftoverPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToMoneyLeftoverPageActionPerformed
         close();
         new moneyLeftoverPage().setVisible(true);// TODO add your handling code here:
@@ -126,6 +118,12 @@ public class createDisplayPage extends javax.swing.JDialog {
         frame.setSize(450,500);
         */
     }//GEN-LAST:event_goToMoneyLeftoverPageActionPerformed
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+ close();
+        new StrtEnd().setVisible(true);
+    }//GEN-LAST:event_button1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,7 +162,7 @@ public class createDisplayPage extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button create;
+    private java.awt.Button button1;
     private java.awt.Button goToMoneyLeftoverPage;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
