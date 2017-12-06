@@ -59,6 +59,7 @@ private void Update_table()
         }
         catch (Exception e)
         {
+            JOptionPane.showMessageDialog(null, e); //added 12/5/17
         }
     }
 } 
@@ -91,6 +92,7 @@ private void Fillcombo()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     }
@@ -388,6 +390,7 @@ private void Fillcombo()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     }//GEN-LAST:event_saveTotalExpenseActionPerformed
@@ -425,6 +428,7 @@ private void Fillcombo()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
         Update_table();
@@ -460,6 +464,7 @@ private void Fillcombo()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
 
@@ -486,6 +491,7 @@ private void Fillcombo()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
         Update_table();
@@ -529,6 +535,7 @@ private void Fillcombo()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     }//GEN-LAST:event_ComboBox_namePopupMenuWillBecomeInvisible
@@ -568,6 +575,7 @@ private void Fillcombo()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
         // TODO add your handling code here:
