@@ -69,7 +69,7 @@ private void Update_table()
             }
             catch (Exception e)
             {
-                JOptionPane.showMessageDialog(null, e); //added 12/5/17
+               // JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     } 
@@ -99,7 +99,7 @@ private void Update_table2()
             }
             catch (Exception e)
             {
-                JOptionPane.showMessageDialog(null, e); //added 12/5/17
+                //JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     } 
@@ -391,7 +391,7 @@ private void Update_table2()
             }
             catch (Exception e)
             {
-                JOptionPane.showMessageDialog(null, e); //added 12/5/17
+                //JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     }//GEN-LAST:event_totalIncomeTableMouseClicked
@@ -419,7 +419,7 @@ private void Update_table2()
             }
             catch (Exception e)
             {
-                JOptionPane.showMessageDialog(null, e); //added 12/5/17
+                //JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     }//GEN-LAST:event_totalExpenseTableMouseClicked
@@ -466,7 +466,7 @@ private void Update_table2()
             }
             catch (Exception e)
             {
-                JOptionPane.showMessageDialog(null, e); //added 12/5/17
+                //JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
        
@@ -523,7 +523,7 @@ private void Update_table2()
             }
             catch (Exception e)
             {
-                JOptionPane.showMessageDialog(null, e); //added 12/5/17
+                //JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
         Update_table(); 
@@ -552,7 +552,7 @@ private void Update_table2()
             }
             catch (Exception e)
             {
-                JOptionPane.showMessageDialog(null, e); //added 12/5/17
+               // JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
         Update_table2();
