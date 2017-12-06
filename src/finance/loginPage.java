@@ -151,6 +151,18 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         {
             JOptionPane.showMessageDialog(null, e);
         }
+         finally
+        {
+            try
+            {
+                rs.close();
+                pst.close();
+            }
+            catch (Exception e)
+            {
+                //JOptionPane.showMessageDialog(null, e); //added 12/5/17
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
