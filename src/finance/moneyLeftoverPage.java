@@ -69,6 +69,7 @@ private void Update_table()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     } 
@@ -98,6 +99,7 @@ private void Update_table2()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     } 
@@ -270,17 +272,17 @@ private void Update_table2()
                             .addComponent(jLabel1))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(79, 79, 79)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                    .addGap(75, 75, 75))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addContainerGap()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(expensePieChartButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4))))
+                                        .addComponent(jLabel4)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(79, 79, 79)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE))
+                                    .addGap(75, 75, 75)))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -323,13 +325,13 @@ private void Update_table2()
                             .addComponent(jLabel6))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(start, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(DeleteExpenseRow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
-                        .addComponent(subtractButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(subtractButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(moneyLeftover, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -389,6 +391,7 @@ private void Update_table2()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     }//GEN-LAST:event_totalIncomeTableMouseClicked
@@ -416,6 +419,7 @@ private void Update_table2()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     }//GEN-LAST:event_totalExpenseTableMouseClicked
@@ -462,6 +466,7 @@ private void Update_table2()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
        
@@ -518,6 +523,7 @@ private void Update_table2()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
         Update_table(); 
@@ -546,6 +552,7 @@ private void Update_table2()
             }
             catch (Exception e)
             {
+                JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
         Update_table2();
