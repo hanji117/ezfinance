@@ -60,6 +60,7 @@ PreparedStatement pst = null;
             }
             catch (Exception e)
             {
+                //JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     } 
@@ -386,6 +387,7 @@ PreparedStatement pst = null;
             }
             catch (Exception e)
             {
+                //JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
         Update_table(); 
@@ -415,6 +417,7 @@ PreparedStatement pst = null;
             }
             catch (Exception e)
             {
+                //JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
         Update_table();
@@ -450,6 +453,7 @@ PreparedStatement pst = null;
             }
             catch (Exception e)
             {
+                //JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
 
@@ -501,6 +505,7 @@ PreparedStatement pst = null;
             }
             catch (Exception e)
             {
+                //JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
         // TODO add your handling code here:
@@ -539,6 +544,7 @@ PreparedStatement pst = null;
             }
             catch (Exception e)
             {
+                //JOptionPane.showMessageDialog(null, e); //added 12/5/17
             }
         }
     }//GEN-LAST:event_saveTotalIncomeActionPerformed
