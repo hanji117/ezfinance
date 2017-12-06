@@ -138,7 +138,7 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         rs=pst.executeQuery();
             if(rs.next())
             {
-            JOptionPane.showMessageDialog(null, "Login successfull");
+            //JOptionPane.showMessageDialog(null, "Login successful");
             //user_info s = new user_info();
             new Home_Finance().setVisible(true);
              }
